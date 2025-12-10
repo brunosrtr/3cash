@@ -5,6 +5,8 @@ import com.taborin._cash.core.domain.model.Professor;
 import com.taborin._cash.core.domain.model.Usuario;
 import com.taborin._cash.core.interfaces.UsuarioRepository;
 import com.taborin._cash.core.interfaces.UsuarioUseCase;
+import com.taborin._cash.infra.DTO.AlunoDTO;
+import com.taborin._cash.infra.DTO.ProfessorDTO;
 import com.taborin._cash.infra.DTO.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +21,22 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
 
     @Override
     public void criar(UsuarioDTO dto) {
-
         Usuario usuario;
 
-        if(dto.getTipo().equalsIgnoreCase("aluno")){
-            usuario = new Aluno();
-        } else if(dto.getTipo().equalsIgnoreCase("professor")){
-            usuario = new Professor();
+        if(dto instanceof AlunoDTO alunoDto){
+            Aluno aluno = new Aluno();
+            aluno.setNome(alunoDto.getNome());
+            aluno.setQuantiaMensalidade(alunoDto.getQuantiaMensalidade());
+            aluno.setQuantiaMoletom(alunoDto.getQuantiaMoletom());
+            usuario = aluno;
+        } else if(dto instanceof ProfessorDTO professorDto){
+            Professor professor = new Professor();
+            professor.setNome(professorDto.getNome());
+            professor.setQuantiaMoletom(professorDto.getQuantiaMoletom());
+            usuario = professor;
         } else {
             throw new IllegalArgumentException("Tipo inválido");
         }
-
-        usuario.setNome(dto.getNome());
 
         usuarioRepository.criar(usuario);
     }
