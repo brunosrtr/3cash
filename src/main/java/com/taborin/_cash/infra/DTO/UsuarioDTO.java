@@ -2,7 +2,6 @@ package com.taborin._cash.infra.DTO;
 
 public class UsuarioDTO{
     private String nome;
-    private String tipo;
 
     public String getNome() {
         return nome;
@@ -10,13 +9,5 @@ public class UsuarioDTO{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 }

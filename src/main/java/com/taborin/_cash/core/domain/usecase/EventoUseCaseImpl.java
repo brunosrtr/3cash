@@ -4,10 +4,12 @@ import com.taborin._cash.core.domain.model.Evento;
 import com.taborin._cash.core.interfaces.EventoRepository;
 import com.taborin._cash.core.interfaces.EventoUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class EventoUseCaseImpl implements EventoUseCase {
 
     @Autowired

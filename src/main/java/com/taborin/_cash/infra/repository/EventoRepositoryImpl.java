@@ -6,9 +6,11 @@ import com.taborin._cash.core.interfaces.EventoRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class EventoRepositoryImpl implements EventoRepository {
 
     @PersistenceContext

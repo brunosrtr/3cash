@@ -22,14 +22,14 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     public void criar(Usuario usuario) {
 
         if (usuario instanceof Professor) {
-            String sql = "INSERT INTO usuario (nome, quantia_moletom) VALUES (:nome, :quantiaMoletom)";
+            String sql = "INSERT INTO usuario (nome, tipo, quantia_moletom) VALUES (:nome, :tipo, :quantiaMoletom)";
             entityManager.createNativeQuery(sql)
                     .setParameter("nome", usuario.getNome())
                     .setParameter("tipo", "PROFESSOR")
                     .setParameter("quantiaMoletom", ((Professor) usuario).getQuantiaMoletom())
                     .executeUpdate();
         } else if (usuario instanceof Aluno) {
-            String sql = "INSERT INTO usuario (nome, quantia_mensalidade, quantia_moletom) VALUES (:nome, :quantiaMensalidade, :quantiaMoletom)";
+            String sql = "INSERT INTO usuario (nome, tipo, quantia_mensalidade, quantia_moletom) VALUES (:nome, :tipo, :quantiaMensalidade, :quantiaMoletom)";
             entityManager.createNativeQuery(sql)
                     .setParameter("nome", usuario.getNome())
                     .setParameter("tipo", "ALUNO")
